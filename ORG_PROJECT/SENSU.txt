@@ -1,9 +1,0 @@
-pa01s1-djcc-as00001.fullsail.snaplogic.com    54.206.38.38
-
-pa01s1-djcc-as00002.fullsail.snaplogic.com    54.206.28.201
-
-pa01s1-djcc-as00003.fullsail.snaplogic.com    54.206.33.47
-
-pa01s1-djcc-as00004.fullsail.snaplogic.com    54.206.70.121
-
-
