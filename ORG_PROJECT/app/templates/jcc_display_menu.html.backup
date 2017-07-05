@@ -1,0 +1,81 @@
+
+<!-- extend from base layout -->                         
+{% extends "base.html" %}                                
+
+{% block content %}
+<h1>JCC Servers Display List</h1>
+<form action="" method="post" name="jccDisplayList">
+
+<div style="height:700px;width:2000px;border:solid 2px orange;overflow:scroll;overflow-x:hidden;overflow-y:scroll;">
+<p style="height:300px;">                                                                                           
+   <table border="1">                                                                                               
+   {{form.hidden_tag()}}                                                                                            
+   <div>                                                                                                            
+    <p><a href='/manageProjectJCCs'>Display JCCs By Project</a></p>                                                                                                            
+   </div>
+
+    {% if results %}
+    <fieldlist>
+       {% set index=0 %}
+       <tr>
+          <th>insert_date</th>
+          <th>project_id</th>
+          <th>jcc_name</th>
+          <th>ip_address</th>
+          <th>org_name</th>
+          <th>prov_date</th>
+          <th>host_last_seen</th>
+          <th>security_groups</th>
+          <th>image_id</th>
+          <th>is_gplex</th>
+          <th>is_cplex</th>
+          <th>is_hplex</th>
+          <th>decomm_date</th>
+       </tr>
+       {%set an_index=0 %}
+       {% for i in results  %}
+        {% set j=i.split(',') %}
+       {%set an_index = an_index + 1 %}
+       <tr>
+       {% for k in i %}
+         <td>k</td>
+       {%endfor %}
+       </tr>
+      <!--  <tr>
+            <td>{{j[0]}}</td>
+            <td>{{j[1]}}</td>
+            <td>{{j[2]}}</td>
+            <td>{{j[3]}}</td>
+            <td>{{j[4]}}</td>
+            <td>{{j[5]}}</td>
+            <td>{{j[6]}}</td>
+            <td>{{j[7]}}</td>
+            <td>{{j[8]}}</td>
+            <td>{{j[9]}}</td>
+            <td>{{j[10]}}</td>
+            <td>{{j[11]}}</td>
+            <td>{{j[12]}}</td> 
+            {% set index=index+1 %}
+        </tr> -->
+       {%endfor %}
+       {%endif%}
+    </fieldlist>
+
+    {% with messages=get_flashed_messages() %}
+    {% if _messages %}
+    <p>SYSTEM MESSAGE</p>
+    <tr>
+    {% for message in messages %}
+     <td>{{message}} </td>
+    {%endfor %}
+    </tr>
+    {%endif%}
+    {%endwith%}
+
+
+   </table>
+</p>
+</div>
+</form>
+{% endblock %}
+

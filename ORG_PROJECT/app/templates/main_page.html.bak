@@ -1,0 +1,23 @@
+<!doctype html>
+{% extends "base.html" %}
+{% block content %}
+
+<p>Click The Button To Start The Org Creation Process</p>
+
+<h1>IP Processing Menu</h1>
+<form action="" method="post" name="org_input_form">
+
+<div style="height:300px;width:1000px;border:solid 2px orange;overflow:scroll;overflow-x:hidden;overflow-y:scroll;">
+<p style="height:300px;">
+   <table border="1">
+   {{form.hidden_tag()}}
+   <div>
+    <p>{{form.submit}} Submit</p>
+    <p><input type="submit" value="Send"></p>
+    <tr><td><a href='/getOrgData'>Create New Org</a> </td>
+   </div>
+</p>
+</div>
+</form>
+{% endblock %}
+

@@ -1,0 +1,69 @@
+<!-- extend from base layout -->                         
+{% extends "base.html" %}                                
+
+{% block content %}
+<h1>JCC DISPLAY PAGE</h1>
+<form action="" method="post" name="jcc_project_processor">
+
+<div style="height:700px;width:2000px;border:solid 2px orange;overflow:scroll;overflow-x:hidden;overflow-y:scroll;">
+<p style="height:300px;">                                                                                           
+
+   <table border="1">                                                                                               
+   {{form.hidden_tag()}}                                                                                            
+   <div>                                                                                                            
+    <p>{{form.submit}} Submit All</p>                                                                               
+    <p><input type="submit" value="List JCCs"></p>                                                                       
+   </div>
+
+
+    <fieldlist>
+       {% set index=0 %}
+       <tr>
+          <td> <b>Project Id<br></b>
+                 <label>
+                     <select name="jcc_project_id">
+                        {% for val in project_id_menu %}
+                            <option value="{{val}}">{{val}}</option>
+                        {%endfor%}
+                     </select>
+                 </label>
+            </td>
+          <td> <b>Function Type<br></b>
+                 <label>
+                     <select name="function_type">
+                        {% for val in function_type_menu %}
+                            <option value="{{val}}">{{val}}</option>
+                        {%endfor%}
+                     </select>
+                 </label>
+          </td>
+          <td> <b>Feature Type<br></b>
+                 <label>
+                     <select name="feature_name">
+                        {% for val in feature_name_menu %}
+                            <option value="{{val}}">{{val}}</option>
+                        {%endfor%}
+                     </select>
+                 </label>
+          </td>
+
+       </tr>
+    </fieldlist>
+    </table>
+
+    {% with messages=get_flashed_messages() %}
+    {% if messages %}
+    <br>
+    <tr><b>---------------------MESSAGE------------------</b></tr><br><br>
+    <tr>
+    {% for message in messages %}
+     <td>{{message}}<br> </td>
+    {%endfor %}
+    </tr>
+    {%endif%}
+    {%endwith%}
+
+</p>
+</div>
+</form>
+{% endblock %}

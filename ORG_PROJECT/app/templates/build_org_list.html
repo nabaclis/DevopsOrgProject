@@ -1,0 +1,80 @@
+
+<!-- extend from base layout -->                         
+{% extends "base.html" %}                                
+
+{% block content %}
+<h1>Orgs Requisition List</h1>
+<form action="" method="post" name="dns_ip">
+
+<div style="height:700px;width:1500px;border:solid 2px orange;overflow:scroll;overflow-x:hidden;overflow-y:scroll;">
+<p style="height:300px;">                                                                                           
+   <table border="1">                                                                                               
+   {{form.hidden_tag()}}                                                                                            
+   <div>                                                                                                            
+    <p>{{form.submit}} Submit All</p>                                                                               
+    <p><input type="submit" value="Create Orgs Selected"></p>                                                                       
+   </div>
+
+    {% if db_list %}
+        {% if template_title %}
+           <th>{{template_title}}</th>
+        {%else%}
+           <b><h>ORGSubmitted For Creation</h></b>
+        {%endif%}
+    <fieldlist>
+       {% set index=0 %}
+       <tr>
+          <th>Insert Date</th>
+          <th>Org Name</th>
+          <th>Pod Name</th>
+          <th>User Type</th>
+          <th>Environment</th>
+          <th>Plex Name</th>
+          <th>Number<br>of Cloud</th>
+          <th>Sidekick<br>required</th>
+          <th>Org Create<br>Status</th>
+          <th>JCC Create<br>Status</th>
+          <th>User<br>Email</th>
+          <th>Requestor<br>Email</th>
+          <th>JCC Names</th>
+       </tr>
+       {% for i in db_list  %}
+        <tr>
+            <td>{{i.curr_date_time}}</td>
+            <td>{{i.org_name}}</td>
+            <td>{{i.pod_name}}</td>
+            <td>{{i.user_type}}</td>
+            <td>{{i.environment}}</td>
+            <td>{{i.plex_name}}</td>
+            <td>{{i.number_of_cloud}}</td>
+            <td>{{i.create_sidekick}}</td>
+            <td>{{i.org_create_status}}</td>
+            <td>{{i.jcc_create_status}}</td>
+            <td>{{i.user_email}}</td>
+            <td>{{i.requestor_email}}</td>
+            <td>{{i.list_of_jcc_names}}</td>
+
+            {% set index=index+1 %}
+        </tr>
+       {%endfor %}
+       {%endif%}
+    </fieldlist>
+
+    {% with messages=get_flashed_messages() %}
+    {% if messages %}
+    <p>SYSTEM MESSAGE</p>
+    <tr>
+    {% for message in messages %}
+     <td>{{message}} </td>
+    {%endfor %}
+    </tr>
+    {%endif%}
+    {%endwith%}
+
+
+   </table>
+</p>
+</div>
+</form>
+{% endblock %}
+

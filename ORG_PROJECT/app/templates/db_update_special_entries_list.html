@@ -1,0 +1,106 @@
+
+<!-- extend from base layout -->                         
+{% extends "base.html" %}                                
+
+{% block content %}
+<h1>Orgs Update List</h1>
+<form action="" method="post" name="update_record_ip">
+
+<div style="height:700px;width:2000px;border:solid 2px orange;overflow:scroll;overflow-x:hidden;overflow-y:scroll;">
+<p style="height:300px;">                                                                                           
+   <table border="1">                                                                                               
+   {{form.hidden_tag()}}                                                                                            
+   <div>                                                                                                            
+    <p><input type="submit" value="Send Updates To Local DB"> <a href='/getSpecialUpdatedOrgData'>Show Org Records Available For Changes</a></p> 
+   </div>
+
+    {% if db_list %}
+        {% if template_title %}
+           <th>{{template_title}}</th>
+        {%else%}
+           <b><h>ORG DB Records</h></b>
+        {%endif%}
+    <fieldlist>
+       {% set index=0 %}
+       <tr>
+          <th></th>
+          <th>Insert Date</th>
+          <th>Update Date</th>
+          <th>Org Name</th>
+          <th>Pod Name</th>
+          <th>Sidekick<br>required</th>
+          <th>Groundplex<br>environment</th>
+
+          <th>Cloudplex<br>required</th>
+          <th>Cloudplex<br>environment</th>
+
+          <th>Hadooplex<br>required</th>
+          <th>Hadooplex<br>environment</th>
+
+          <th>User<br>Email</th>
+          <th>Requestor<br>Email</th>
+       </tr>
+       {% for i in db_list  %}
+        <tr>
+            <td><input type='checkbox' name='box' value={{i.record_id}} </td>
+            <td>{{i.create_date_time}}</td>
+            <td>{{i.update_date_time}}</td>
+            <td>{{i.org_name}}</td>
+            <td>{{i.pod_name}}</td>
+            <td>{{i.create_sidekick}}<br>
+               <label>
+                   <select name="create_sidekick">
+                   {% for val in bool_menu %}
+                      <option value="{{val}}">{{val}}</option>
+                   {% endfor %}   
+                   </select>
+               </label>
+            </td>
+            <td>{{i.groundplex_environment}}<br>{{form.groundplex_environment}}</td>
+            <td>{{i.create_cloud}}<br>
+               <label>
+                   <select name="create_cloud">
+                   {% for val in bool_menu %}
+                      <option value="{{val}}">{{val}}</option>
+                   {% endfor %}
+                   </select>
+               </label>
+            </td>
+            <td>{{i.cloudplex_environment}}<br>{{form.cloudplex_environment}}</td>
+            <td>{{i.create_hadooplex}}<br>
+               <label>
+                   <select name="create_hadooplex">
+                   {% for val in bool_menu %}
+                      <option value="{{val}}">{{val}}</option>
+                   {% endfor %}
+                   </select>
+               </label>
+            </td>
+
+            <td>{{i.hadooplex_environment}}<br>{{form.hadooplex_environment}}</td>
+
+            <td>{{i.user_email}}<br>{{form.user_email}}</td>
+            <td>{{i.requestor_email}}<br>{{form.requestor_email}}</td>
+
+            {% set index=index+1 %}
+        </tr>
+       {%endfor %}
+       {%endif%}
+    </fieldlist>
+    </table>
+
+    {% with messages=get_flashed_messages() %}
+    {% if messages %}
+    <br><tr><b>SYSTEM MESSAGE</b></tr><br><br>
+    <tr>
+    {% for message in messages %}
+     <td>{{message}} </td><br>
+    {%endfor %}
+    </tr>
+    {%endif%}
+    {%endwith%}
+</p>
+</div>
+</form>
+{% endblock %}
+

@@ -1,0 +1,31 @@
+ * Running on http://127.0.0.1:5555/
+ * Restarting with reloader
+127.0.0.1 - - [10/Aug/2016 11:07:01] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [10/Aug/2016 11:07:07] "GET /getGroundplexKeys HTTP/1.1" 200 -
+127.0.0.1 - - [10/Aug/2016 11:07:17] "GET /getGroundplexKeys HTTP/1.1" 200 -
+127.0.0.1 - - [10/Aug/2016 11:07:20] "GET /index HTTP/1.1" 200 -
+127.0.0.1 - - [10/Aug/2016 11:09:43] "GET /getUpdatedOrgData HTTP/1.1" 200 -
+127.0.0.1 - - [10/Aug/2016 11:09:46] "GET /listDBRecords HTTP/1.1" 200 -
+127.0.0.1 - - [10/Aug/2016 11:50:36] "GET /index HTTP/1.1" 200 -
+127.0.0.1 - - [10/Aug/2016 11:51:24] "GET /index HTTP/1.1" 200 -
+127.0.0.1 - - [10/Aug/2016 11:51:30] "GET /getGroundplexKeys HTTP/1.1" 200 -
+127.0.0.1 - - [10/Aug/2016 11:52:04] "POST /getGroundplexKeys HTTP/1.1" 200 -
+ * Detected change in '/Users/cseymour/claude_scripts/ORG_PROJECT/app/__init__.py', reloading
+ * Restarting with reloader
+ * Detected change in '/Users/cseymour/claude_scripts/ORG_PROJECT/app/__init__.py', reloading
+ * Restarting with reloader
+ * Detected change in '/Users/cseymour/claude_scripts/ORG_PROJECT/app/__init__.py', reloading
+ * Restarting with reloader
+ * Detected change in '/Users/cseymour/claude_scripts/ORG_PROJECT/app/__init__.py', reloading
+ * Restarting with reloader
+ * Detected change in '/Users/cseymour/claude_scripts/ORG_PROJECT/app/__init__.py', reloading
+ * Restarting with reloader
+ * Detected change in '/Users/cseymour/claude_scripts/ORG_PROJECT/app/__init__.py', reloading
+ * Restarting with reloader
+127.0.0.1 - - [10/Aug/2016 13:36:26] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [10/Aug/2016 13:37:01] "GET / HTTP/1.1" 200 -
+ * Running on http://127.0.0.1:5555/
+ * Restarting with reloader
+127.0.0.1 - - [10/Aug/2016 13:37:58] "GET / HTTP/1.1" 200 -
+ * Running on http://127.0.0.1:5555/
+ * Restarting with reloader

@@ -1,0 +1,93 @@
+<!-- extend from base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Org Creation Menu</h1>
+<form action="" method="post" name="dns_ip">
+
+<div style="height:400px;width:1500px;border:solid 2px orange;overflow:scroll;overflow-x:hidden;overflow-y:scroll;">
+<p style="height:300px;">
+   <table border="1">
+   {{form.hidden_tag()}}
+    <p>{{form.submit}} Submit</p>
+    <p><input type="submit" value="Send"></p>
+    <tr>
+            <td> <b>Org<br>Name<br></b>{{form.org_name}} </td>
+
+            <td> <b>Pod<br>Name<br></b>
+                 <label>
+                     <select name="pod_name">
+                        {% for val in pod_name_menu %}
+                            <option value="{{val}}">{{val}}</option>
+                        {%endfor%}
+                     </select>
+                 </label>
+            </td>
+
+
+            <td> <b>Requestor<br>Email<br></b>{{form.requestor_email}} </td>
+
+            <td> <b>Requestor<br>Type<br></b>
+                   <label>
+                     <select name="requestor_type">
+                        {% for val in requestor_type_menu %}
+                            <option value="{{val}}">{{val}}</option>
+                        {%endfor%}
+                     </select>
+                 </label>
+            </td>
+
+
+            <td> <b>Gplex<br>Needed<br></b>{{form.create_sidekick}} </td>
+            <td> <b>Cloud<br>Needed<br></b>{{form.create_cloud}} </td>
+            <td> <b>Hplex<br>Needed<br></b>{{form.create_hadooplex}} </td>
+            <td> <b>Num of<br>Cloud<br></b>{{form.number_of_cloud}} </td>
+            <td> <b>Create<br>Org<br></b>
+                   <label>
+                     <select name="create_org_flag">
+                        {% for val in create_org_menu %}
+                            <option value="{{val}}">{{val}}</option>
+                        {%endfor%}
+                     </select>
+                 </label>
+            </td>
+
+            <td> <b>Create<br>Jcc<br></b>
+                   <label>
+                     <select name="create_jcc_flag">
+                        {% for val in create_jcc_menu %}
+                            <option value="{{val}}">{{val}}</option>
+                        {%endfor%}
+                     </select>
+                 </label>
+            </td>
+            <td> <b>JCC<br>ProjectId<br></b>
+                 <label>
+                     <select name="jcc_project_id">
+                        {% for val in jcc_project_menu %}
+                            <option value="{{val}}">{{val}}</option>
+                        {%endfor%}
+                     </select>
+                 </label>
+            </td>
+
+    </tr>
+   </table>
+    {% with messages=get_flashed_messages() %}
+    {% if messages %}
+    <br>
+    <tr><b>STATUS MESSAGE</b></tr><br><br>
+    <tr>
+    {% for message in messages %}
+     <td>{{message}}<br> </td>
+    {%endfor %}
+    </tr>
+    {%endif%}
+    {%endwith%}
+
+</p>
+</div>
+</form>
+{% endblock %}
+
+

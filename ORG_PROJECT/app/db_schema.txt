@@ -1,0 +1,14 @@
+
+        record_id=Column(String(200))
+        create_date_time=Column(DateTime)
+        user_email=Column(String(200),nullable=False)
+        requestor_email=Column(String(200),nullable=False)
+        org_name=Column(String(120),primary_key=True,nullable=False)
+        pod_name=Column(Enum('prodxl','prodxl2','uatxl','canaryxl','canaryxl2','snap','ux3', 'ux2','ux','portal','budgy','spark','SnapLogicSales','perf','prov-sldb','dev-sldb','stage'), primary_key=True,nullable=False)
+        requestor_type=Column(Enum('admin', 'regular'), default='regular')
+        groundplex_environment=Column(String(120))
+        cloudplex_environment=Column(String(120))
+        hadooplex_environment=Column(String(120))
+        number_of_cloud=Column(Integer,default=0)
+        admin_users_list=Column(String(2000))
+

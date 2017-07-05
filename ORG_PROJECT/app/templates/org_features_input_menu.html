@@ -1,0 +1,40 @@
+<!-- extend from base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Org Features Input Form {{processing_type}}</h1>
+<form action="" method="post" name="org_features_data_input">
+
+<div style="height:700px;width:2000px;border:solid 2px orange;overflow:scroll;overflow-x:hidden;overflow-y:scroll;">
+<p style="height:300px;">
+   <table border="1">
+   {{form.hidden_tag()}}
+   <div>
+    <p>{{form.submit}} Submit All</p>
+    <p><input type="submit" value= 'Show All Available Features'></p>
+    <tr>
+       <td> <b>Org<br>Name<br></b>{{form.org_name}} </td>
+       <td> <b>Pod<br>Name<br></b>{{form.pod_name}} </td>
+    </tr>
+   </div>
+
+</p>
+</div>
+<tr>
+    {% with messages=get_flashed_messages() %}
+    {% if messages %}
+    <p><b>SYSTEM MESSAGE</b></p>
+    <tr>
+    {% for message in messages %}
+       {% for k in message.split(',') %}
+          <tr>{{k}}<br></tr>
+       {%endfor%}
+       <br>
+    {%endfor %}
+    </tr>
+    {%endif%}
+    {%endwith%}
+</tr>
+
+</form>
+{% endblock %}

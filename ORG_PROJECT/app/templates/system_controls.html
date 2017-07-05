@@ -1,0 +1,77 @@
+
+<!-- extend from base layout -->                         
+{% extends "base.html" %}                                
+
+{% block content %}
+<h1>Orgs Update List</h1>
+<form action="" method="post" name="dns_ip">
+
+<div style="height:700px;width:2000px;border:solid 2px orange;overflow:scroll;overflow-x:hidden;overflow-y:scroll;">
+<p style="height:300px;">                                                                                           
+   <table border="1">                                                                                               
+   {{form.hidden_tag()}}                                                                                            
+   <div>                                                                                                            
+    <p>{{form.submit}} Submit All</p>                                                                               
+    <p><input type="submit" value="Update Orgs Selected"></p>                                                                       
+    <p><a href='/activateScripts'>Display Controls Menu</a></p> 
+   </div>
+
+    {% if db_list %}
+        {% if template_title %}
+           <th>{{template_title}}</th>
+        {%else%}
+           <b><h>System Controls Menu</h></b>
+        {%endif%}
+
+    <fieldlist>
+       {% set index=0 %}
+       <tr>
+          <th>Insert Date</th>
+          <th>Update Date</th>
+          <th>Activate/Deactivate<br>Org Processing</th>
+          <th>Activate/Deactivate<br>JCC Processing</th>
+       </tr>
+       {% for i in db_list  %}
+        <tr>
+            <td>{{i.create_date_time}}</td>
+            <td>{{i.update_date_time}}</td>
+            <td>{{i.activate_org_creation}}<br>
+                 <label>
+                     <select name="activate_org_creation">
+                        {% for val in activate_org_creation_menu %}
+                            <option value="{{val}}">{{val}}</option>
+                        {%endfor%}
+                     </select>
+                 </label>
+            </td>
+            <td>{{i.activate_jcc_creation}}<br>
+                <label>
+                     <select name="activate_jcc_creation">
+                        {% for val in activate_jcc_creation_menu %}
+                            <option value="{{val}}">{{val}}</option>
+                        {%endfor%}
+                     </select>
+                 </label>
+            </td>
+            {% set index=index+1 %}
+        </tr>
+       {%endfor %}
+       {%endif%}
+    </fieldlist>
+    </table>
+
+    {% with messages=get_flashed_messages() %}
+    {% if messages %}
+    <br><tr><b>SYSTEM MESSAGE</b></tr><br><br>
+    <tr>
+    {% for message in messages %}
+     <td>{{message}} </td><br>
+    {%endfor %}
+    </tr>
+    {%endif%}
+    {%endwith%}
+</p>
+</div>
+</form>
+{% endblock %}
+

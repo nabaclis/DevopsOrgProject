@@ -1,0 +1,84 @@
+
+<!-- extend from base layout -->                         
+{% extends "base.html" %}                                
+
+{% block content %}
+<form action="" method="post" name="snap_List">
+
+<div style="height:700px;width:2000px;border:solid 2px orange;overflow:scroll;overflow-x:hidden;overflow-y:scroll;">
+<p style="height:300px;">                                                                                           
+   <table border="1">                  
+   {% if org_name %}                                                                             
+      <h1>Processing Snaps of Org: {{org_name}} in POD: {{pod_name}}
+   {% endif %}
+   <h1>Premium Snap List(Select Any To Add)</h1>
+   {{form.hidden_tag()}}                                                                                            
+   <div>                                                                                                            
+    <p>{{form.select_all}} Select All Snaps</p>                                                                               
+       {% if new_org_input %}
+         <p><input type="submit" value="Send Updates To The Org DB"> <a href='/getOrgData'>Return To Collect Org data</a>  <a href='/collectFeaturesForBatch/LocalDBAdd/{{org_name}}/{{pod_name}}'>Get Org Features</a>  </p>
+       {%else%}
+         <p><input type="submit" value="Send Updates To The Org DB"> <a href='/UpdateOrgPremiumSnaps'>Return To Add/Remove Snaps On the Org</a> </p>
+       {%endif%}
+
+    {% if template_title %}
+       <p><a href='/ListPremiumSnaps'>{{template_title}}</a></p>                                                                                                            
+    {%endif%}
+   </div>
+
+    {% if snap_list %}
+        {% if table_header %}
+           <th></th>
+        {%else%}
+           <b><h>Premiun Snap List</h></b>
+        {%endif%}
+     {% set index=0 %}
+     {% for i in snap_list  %}
+          {% set rows=index%7 %}
+            {% if rows == 0 %}
+               <tr></tr>
+            {%endif%}
+            <td><input type='checkbox' name='box' value={{index}} </td>
+            <td>{{i}}</td>
+          {% set index=index+1 %}
+     {%endfor %}
+    {%endif%}
+
+    <table border="1">
+    <div>
+     {% if selected_snap_list %}
+     <h1>Selected Snaps(Select Any To Deselect)</h1>
+     <p>{{form.clear_all}} Deselect All Snaps</p>
+     {% set index=0 %}
+     {% for i in selected_snap_list  %}
+          {% set rows=index%7 %}
+            {% if rows == 0 %}
+               <tr></tr>
+            {%endif%}
+            <td><input type='checkbox' name='box1' value={{index}} </td>
+            <td>{{i}}</td>
+          {% set index=index+1 %}
+     {%endfor %}
+    {%endif%}
+   </div>
+   </table>
+
+
+    {% with messages=get_flashed_messages() %}
+    {% if _messages %}
+    <p>SYSTEM MESSAGE</p>
+    <tr>
+    {% for message in messages %}
+     <td>{{message}} </td>
+    {%endfor %}
+    </tr>
+    {%endif%}
+    {%endwith%}
+
+
+   </table>
+</p>
+</div>
+</form>
+{% endblock %}
+

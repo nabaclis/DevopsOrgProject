@@ -1,0 +1,14 @@
+<html>
+   <head>
+       {% if title %}
+          <title>{{title}} - ORG Provisioning Tool</title>
+       {% else %}
+          <title>JCC Provisioning Tool</title>
+       {% endif %}
+   </head>
+   <body>
+       <div><h1><b>Org Provisioning and JCC Creation Home Page:</b> <a href="/index">Home</a></h1></div>
+       <hr>
+       {% block content %}{% endblock %}
+   </body>
+</html>

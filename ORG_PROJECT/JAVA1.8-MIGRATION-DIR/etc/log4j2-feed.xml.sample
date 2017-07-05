@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ SnapLogic - Data Integration
+  ~
+  ~ Copyright (C) 2014, SnapLogic, Inc.  All rights reserved.
+  ~
+  ~ This program is licensed under the terms of
+  ~ the SnapLogic Commercial Subscription agreement.
+  ~
+  ~ "SnapLogic" is a trademark of SnapLogic, Inc.
+  -->
+
+<Configuration name="CustomFeedMasterConfig" packages="com.snaplogic.cc.log">
+    <Appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT" follow="true" ignoreExceptions="true">
+            <PatternLayout pattern="%d{yyyy-MM-dd}T%d{HH:mm:ss,SSS} %level{length=1} %-20t %-30F [%X{ccid} %X{plrd} %X{snii}] %m%xEx{short}%n"/>
+        </Console>
+        <RollingRandomAccessFile name="FMACCESS"
+                                 fileName="${env:SL_ROOT}/run/log/feed_master_access.log"
+                                 immediateFlush="true" append="true"
+                     filePattern="${env:SL_ROOT}/run/log/backup/feed_master_access-%i.log.gz"
+                     ignoreExceptions="true">
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="5"/>
+        </RollingRandomAccessFile>
+        <RollingRandomAccessFile name="FMMAINJSON"
+                                 fileName="${env:SL_ROOT}/run/log/feed_master.json"
+                                 immediateFlush="true" append="true"
+                     filePattern="${env:SL_ROOT}/run/log/backup/feed_master-%i.json.gz"
+                     ignoreExceptions="false">
+            <JsonLogLayout properties="true"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="50 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="5"/>
+        </RollingRandomAccessFile>
+        <RollingRandomAccessFile name="FMERRORJSON"
+                                 fileName="${env:SL_ROOT}/run/log/feed_master_error.json"
+                                 immediateFlush="true" append="true"
+                     filePattern="${env:SL_ROOT}/run/log/backup/feed_master_error-%i.json.gz"
+                     ignoreExceptions="false">
+            <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+            <JsonLogLayout properties="true"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="50 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="5"/>
+        </RollingRandomAccessFile>
+    </Appenders>
+    <Loggers>
+        <Logger name="sl" level="debug" includeLocation="false" additivity="false">
+            <AppenderRef ref="STDOUT" />
+        </Logger>
+        <Logger name="sl.access" level="debug" includeLocation="false" additivity="false">
+        </Logger>
+        <Logger name="jetty.access" level="info" includeLocation="false" additivity="false">
+            <AppenderRef ref="FMACCESS" />
+        </Logger>
+        <Logger name="com.snaplogic" level="debug" includeLocation="true" additivity="false">
+            <AppenderRef ref="FMMAINJSON"/>
+            <AppenderRef ref="FMERRORJSON"/>
+        </Logger>
+        <Logger name="org.apache.activemq" level="info" includeLocation="true" additivity="false">
+            <AppenderRef ref="FMMAINJSON"/>
+            <AppenderRef ref="FMERRORJSON"/>
+        </Logger>
+        <Root level="error" additivity="false">
+            <AppenderRef ref="FMERRORJSON"/>
+        </Root>
+    </Loggers>
+</Configuration>
